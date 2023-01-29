@@ -1,0 +1,3 @@
+npm init  ---> iniciamos un paquete npm
+npm init --yes ---> iniciamos un paquete npm con valores por defecto
+
