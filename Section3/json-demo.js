@@ -36,3 +36,5 @@ console.log(infoCursoJSON.titulo); //ya no es un objeto , da undefined
 let infoCursoObjeto = JSON.parse(infoCursoJSON);
 console.log(infoCursoObjeto);
 console.log(typeof infoCursoObjeto);
+
+

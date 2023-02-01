@@ -1,3 +1,7 @@
 npm init  ---> iniciamos un paquete npm
 npm init --yes ---> iniciamos un paquete npm con valores por defecto
 
+npm install express  ---> instalamos paquete express
+npm uninstall express ---> desinstalamos paquete express
+npm install express@4.15.1 ---> instalamos una versión específica del paquete
+npm install express --save-dev  ---> instalamos express y la guardamos como una dependencia para el desarrollo de la app
