@@ -13,12 +13,22 @@ const servidor = http.createServer((req, res) => {
     // console.log(req.headers); //atributo headers indica cabecera de la solicitud
     
 
+    //statusCode (res)
     console.log("===> res (respuesta)");
     // console.log(res);
     console.log(res.statusCode); //atributo statusCode indica el estado de la solicitud
-    
+    //res.statusCode = 404; //podemos modificar el valor manualmente
+    //console.log(res.statusCode); 
+    //el navegador depende del statusCode para saber que ocurrió con la  solicitud
 
 
+    //configurar cabecera (res)
+    res.setHeader("content-type", "application/json"); //indicamos el tipo de la cabecera
+    console.log(res.getHeaders()); //obtenemos la info de la cabecera
+
+
+
+    //enviar respuesta usuario (res)
     res.end("Hola, mundo");
 });
 
