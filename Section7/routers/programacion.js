@@ -43,7 +43,8 @@ routerProgramacion.get("/:lenguaje/:nivel", (req, res) => {
     const resultados = programacion.filter(curso => curso.lenguaje === lenguaje && curso.nivel === nivel);
 
     if (resultados.length === 0){
-        return res.status(404).send(`No se encontraron cursos de ${lenguaje} de nivel ${nivel}`);
+        return res.status(204).send(`No se encontraron cursos de ${lenguaje} de nivel ${nivel}`);
+        //return res.status(404).end(); //metodo end() envía una respuesta vacía a la request
     }
 
     res.send(JSON.stringify(resultados));
@@ -59,6 +60,38 @@ routerProgramacion.put("/:id", (req, res) => {
     const cursoActualizado = req.body;
     const id = req.params.id;
 
+    const indice = programacion.findIndex(curso => curso.id == id);
+
+    if (indice >= 0) {
+        programacion[indice] = cursoActualizado;
+    }
+    res.send(JSON.stringify(programacion));
+});
+
+routerProgramacion.patch("/:id", (req, res) => {
+    const infoActualizada = req.body;
+    const id = req.params.id;
+
+    const indice = programacion.findIndex(curso => curso.id == id);
+
+    if (indice >= 0) {
+        const cursoAModificar = programacion[indice];
+        Object.assign(cursoAModificar, infoActualizada);
+    }
+    res.send(JSON.stringify(programacion));
+});
+
+routerProgramacion.delete("/:id", (req, res) => {
+    const id = req.params.id;
+    const indice = programacion.findIndex(curso => curso.id == id);
+
+    if (indice >= 0) {
+        programacion.splice(indice, 1);
+    }
+
+    res.send(programacion); //metodo send() convierte un objeto a formato JSON automaticamente, por lo que no es necesario usar JSON.stringify()
+    //tambien podemos utilizar res.json() , metodo json() utiliza internamente JSON.stringify() y convierte cualquier argumento a formato JSON
+    //nos sirve para asegurarnos que el contenido será enviado en formato JSON
 });
 
 module.exports = routerProgramacion;
